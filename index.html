@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda de Contactos</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Agenda de Contactos</h1>
+        <p>Administra y organiza tus contactos fácilmente.</p>
+    </header>
+
+    <main>
+
+        <section aria-labelledby="formulario-titulo">
+            <h2 id="formulario-titulo">Registrar contacto</h2>
+
+            <form id="contact-form">
+
+                <div>
+                    <label for="nombre">Nombre completo:</label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Ingrese el nombre completo"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="telefono">Teléfono:</label>
+                    <input
+                        type="tel"
+                        id="telefono"
+                        name="telefono"
+                        placeholder="Ingrese el teléfono"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="correo">Correo electrónico:</label>
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="Ingrese el correo electrónico"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Seleccione una categoría</option>
+                        <option value="Familia">Familia</option>
+                        <option value="Amigos">Amigos</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="notas">Notas:</label>
+                    <textarea
+                        id="notas"
+                        name="notas"
+                        rows="4"
+                        placeholder="Escriba información adicional"
+                    ></textarea>
+                </div>
+
+                <button type="submit" id="guardar-contacto">
+                    Guardar contacto
+                </button>
+
+            </form>
+        </section>
+
+        <section aria-labelledby="lista-titulo">
+            <h2 id="lista-titulo">Lista de contactos</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Categoría</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="contact-list">
+                        <!-- Aquí aparecerán los contactos registrados -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Agenda de Contactos. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
