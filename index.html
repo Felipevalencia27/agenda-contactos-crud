@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Agenda de Contactos</title>
-
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
 </head>
 <body>
+
+    <!-- ====================================== -->
+    <!-- PROMPT 1: ESTRUCTURA HTML DE LA AGENDA -->
+    <!-- ====================================== -->
 
     <header>
         <h1>Agenda de Contactos</h1>
@@ -19,48 +21,106 @@
 
     <main>
 
-        <section aria-labelledby="formulario-titulo">
-            <h2 id="formulario-titulo">Registrar contacto</h2>
+        <!-- ====================================== -->
+        <!-- PROMPT 1: FORMULARIO DE CONTACTOS -->
+        <!-- PROMPT 2: ESPACIOS PARA VALIDACIONES -->
+        <!-- ====================================== -->
 
-            <form id="contact-form">
+        <section class="contenedor">
+            <h2 id="titulo-formulario">Registrar contacto</h2>
 
-                <div>
+            <form id="formulario-contacto" novalidate>
+
+                <!-- Campo nombre -->
+                <div class="campo">
                     <label for="nombre">Nombre completo:</label>
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        placeholder="Ingrese el nombre completo"
-                        required
-                    >
+                    <input type="text" id="nombre"
+                        placeholder="Ingrese el nombre completo">
+
+                    <!-- PROMPT 2: Mensaje de error del nombre -->
+                    <small class="mensaje-error" id="error-nombre"></small>
                 </div>
 
-                <div>
+                <!-- Campo teléfono -->
+                <div class="campo">
                     <label for="telefono">Teléfono:</label>
-                    <input
-                        type="tel"
-                        id="telefono"
-                        name="telefono"
-                        placeholder="Ingrese el teléfono"
-                        required
-                    >
+                    <input type="tel" id="telefono"
+                        placeholder="Ingrese el teléfono">
+
+                    <!-- PROMPT 2: Mensaje de error del teléfono -->
+                    <small class="mensaje-error" id="error-telefono"></small>
                 </div>
 
-                <div>
+                <!-- Campo correo -->
+                <div class="campo">
                     <label for="correo">Correo electrónico:</label>
-                    <input
-                        type="email"
-                        id="correo"
-                        name="correo"
-                        placeholder="Ingrese el correo electrónico"
-                        required
-                    >
+                    <input type="email" id="correo"
+                        placeholder="Ingrese el correo electrónico">
+
+                    <!-- PROMPT 2: Mensaje de error del correo -->
+                    <small class="mensaje-error" id="error-correo"></small>
                 </div>
 
-                <div>
+                <!-- Campo categoría -->
+                <div class="campo">
                     <label for="categoria">Categoría:</label>
-                    <select id="categoria" name="categoria" required>
+                    <select id="categoria">
                         <option value="">Seleccione una categoría</option>
+                        <option value="Familia">Familia</option>
+                        <option value="Amigos">Amigos</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+
+                    <!-- PROMPT 2: Mensaje de error de categoría -->
+                    <small class="mensaje-error" id="error-categoria"></small>
+                </div>
+
+                <!-- Campo notas -->
+                <div class="campo">
+                    <label for="notas">Notas:</label>
+                    <textarea id="notas"
+                        placeholder="Escriba información adicional"></textarea>
+                </div>
+
+                <!-- PROMPT 1: Botón para guardar -->
+                <!-- PROMPT 3: Botón que también permite actualizar -->
+                <div class="botones-formulario">
+                    <button type="submit" id="boton-guardar">
+                        Guardar contacto
+                    </button>
+
+                    <!-- PROMPT 3: Botón para cancelar la edición -->
+                    <button type="button" id="boton-cancelar" hidden>
+                        Cancelar
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- PROMPT 3: BUSCADOR Y FILTRO -->
+        <!-- ====================================== -->
+
+        <section class="contenedor">
+            <h2>Lista de contactos</h2>
+
+            <div class="filtros">
+
+                <!-- PROMPT 3: Buscar contactos por nombre -->
+                <div class="campo">
+                    <label for="buscar-contacto">Buscar por nombre:</label>
+                    <input type="search" id="buscar-contacto"
+                        placeholder="Escriba un nombre...">
+                </div>
+
+                <!-- PROMPT 3: Filtrar contactos por categoría -->
+                <div class="campo">
+                    <label for="filtrar-categoria">Filtrar por categoría:</label>
+                    <select id="filtrar-categoria">
+                        <option value="">Todas las categorías</option>
                         <option value="Familia">Familia</option>
                         <option value="Amigos">Amigos</option>
                         <option value="Trabajo">Trabajo</option>
@@ -68,27 +128,15 @@
                     </select>
                 </div>
 
-                <div>
-                    <label for="notas">Notas:</label>
-                    <textarea
-                        id="notas"
-                        name="notas"
-                        rows="4"
-                        placeholder="Escriba información adicional"
-                    ></textarea>
-                </div>
+            </div>
 
-                <button type="submit" id="guardar-contacto">
-                    Guardar contacto
-                </button>
 
-            </form>
-        </section>
+            <!-- ====================================== -->
+            <!-- PROMPT 1: TABLA DE CONTACTOS -->
+            <!-- PROMPT 3: RESULTADOS DEL BUSCADOR -->
+            <!-- ====================================== -->
 
-        <section aria-labelledby="lista-titulo">
-            <h2 id="lista-titulo">Lista de contactos</h2>
-
-            <div class="table-container">
+            <div class="tabla-contenedor">
                 <table>
                     <thead>
                         <tr>
@@ -100,17 +148,27 @@
                         </tr>
                     </thead>
 
-                    <tbody id="contact-list">
-                        <!-- Aquí aparecerán los contactos registrados -->
-                    </tbody>
+                    <!-- Aquí JavaScript muestra los contactos -->
+                    <tbody id="tabla-contactos"></tbody>
                 </table>
             </div>
+
+            <!-- PROMPT 3: Mensaje cuando no hay resultados -->
+            <p id="mensaje-vacio" class="mensaje-vacio" hidden>
+                No se encontraron contactos.
+            </p>
+
         </section>
 
     </main>
 
+
+    <!-- ====================================== -->
+    <!-- PROMPT 1: PIE DE PÁGINA -->
+    <!-- ====================================== -->
+
     <footer>
-        <p>&copy; 2026 Agenda de Contactos. Todos los derechos reservados.</p>
+        <p>© 2026 Agenda de Contactos. Todos los derechos reservados.</p>
     </footer>
 
 </body>
